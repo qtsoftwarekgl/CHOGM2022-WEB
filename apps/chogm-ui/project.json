@@ -1,0 +1,94 @@
+{
+  "root": "apps/chogm-ui",
+  "sourceRoot": "apps/chogm-ui/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/chogm-ui",
+        "index": "apps/chogm-ui/src/index.html",
+        "baseHref": "/",
+        "main": "apps/chogm-ui/src/main.tsx",
+        "polyfills": "apps/chogm-ui/src/polyfills.ts",
+        "tsConfig": "apps/chogm-ui/tsconfig.app.json",
+        "assets": ["apps/chogm-ui/src/favicon.ico", "apps/chogm-ui/src/assets"],
+        "styles": ["apps/chogm-ui/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/chogm-ui/src/environments/environment.ts",
+              "with": "apps/chogm-ui/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        },
+        "uat": {
+          "fileReplacements": [
+            {
+              "replace": "apps/chogm-ui/src/environments/environment.ts",
+              "with": "apps/chogm-ui/src/environments/environment.uat.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "chogm-ui:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "chogm-ui:build:development"
+        },
+        "production": {
+          "buildTarget": "chogm-ui:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/chogm-ui/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/chogm-ui"],
+      "options": {
+        "jestConfig": "apps/chogm-ui/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

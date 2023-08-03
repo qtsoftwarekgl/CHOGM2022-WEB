@@ -1,0 +1,6 @@
+apps:
+  - script: ./dist/apps/chogm-api/main.js
+    name: chogm-2022-api
+    watch: false
+    instances: 4
+    exec_mode: cluster
