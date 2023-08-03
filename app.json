@@ -1,0 +1,49 @@
+{
+  "expo": {
+    "name": "CHOGM 2022",
+    "slug": "CHOGM2022",
+    "version": "2.9.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 60000
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.chogm2022.RW",
+      "buildNumber": "2.9.0",
+      "googleServicesFile": "./assets/GoogleService-Info.plist",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to scan QR code in order to login."
+      }
+    },
+    "android": {
+      "googleServicesFile": "./assets/google-services.json",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "permissions": [
+        "CAMERA"
+      ],
+      "package": "com.chogm2022.RW",
+      "versionCode": 21
+    },
+    "plugins": [
+      "@react-native-firebase/app",
+      "@react-native-firebase/perf",
+      "@react-native-firebase/crashlytics"
+    ],
+    "web": {
+      "favicon": "./assets/icon.png"
+    }
+  }
+}
