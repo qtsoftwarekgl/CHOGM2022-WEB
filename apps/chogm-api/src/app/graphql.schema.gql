@@ -1,0 +1,728 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AllStats {
+  business: CmsStat!
+  chogm: CmsStat!
+  media: CmsStat!
+  people: CmsStat!
+  women: CmsStat!
+  youth: CmsStat!
+}
+
+input AmenitiesInput {
+  camera: Boolean!
+  conditioner: Boolean!
+  microphone: Boolean!
+  projector: Boolean!
+  wifi: Boolean!
+}
+
+input ApproveBookingInput {
+  bookingId: String!
+  message: String
+  room: String
+  status: EStatus!
+}
+
+type Booking {
+  _id: ID!
+  actionUser: CreatedBy!
+  createdDate: DateTime!
+  endDate: DateTime!
+  id: ID!
+  message: String
+  oldroom: Room!
+  room: Room!
+  startDate: DateTime!
+  status: EStatus!
+  user: User!
+}
+
+type CatType {
+  count: Float!
+  name: String!
+}
+
+type Chat {
+  chatType: EChatType!
+  createdDate: DateTime!
+  id: ID!
+  messages: [Message!]!
+  queryType: EQAtypes!
+  users: [User!]
+}
+
+input ChogmLoginInput {
+  email: String!
+  qrdata: String!
+}
+
+type Cms {
+  category: ECMSTypes!
+  createdBy: CreatedBy!
+  createdDate: DateTime!
+  description: String!
+  id: ID!
+  name: String!
+  otherInfo: OtherInfo
+  qaType: EQAtypes
+  state: Boolean!
+  thumbnail: String
+  updatedBy: [CreatedBy!]!
+  updatedDate: DateTime!
+}
+
+input CmsCategoryInput {
+  category: ECMSTypes!
+}
+
+type CmsStat {
+  categories: [CatType!]!
+  gender: [GenderType!]!
+  registered: Float!
+}
+
+type ConvidResult {
+  testDate: String
+  testResult: String
+  testType: String
+}
+
+input CreateBookingInput {
+  endDate: DateTime!
+  room: String!
+  startDate: DateTime!
+  user: String!
+}
+
+input CreateChatInput {
+  message: String!
+  queryType: EQAtypes!
+  receiver: String
+  sender: String
+}
+
+input CreateCmsInput {
+  category: ECMSTypes!
+  description: String!
+  name: String!
+  otherInfo: OtherInfoInput
+  qaType: EQAtypes
+  state: Boolean
+  thumbnail: String
+}
+
+input CreateForumInput {
+  attendees: [String!]
+  description: String!
+  endDate: DateTime!
+  name: String!
+  startDate: DateTime!
+  state: Boolean
+  status: Boolean = true
+  thumbnail: String!
+  venue: String!
+}
+
+input CreateProgrammeInput {
+  broadcastLink: String
+  description: String!
+  endDate: DateTime!
+  forum: String!
+  moderator: [String!]!
+  room: String
+  speakers: [String!]!
+  startDate: DateTime!
+  state: Boolean
+  title: String!
+}
+
+input CreateRoomInput {
+  amenities: AmenitiesInput!
+  bookable: Boolean!
+  capacity: Float!
+  description: String!
+  isMediaRoom: Boolean!
+  name: String!
+  state: Boolean
+  thumbnail: String!
+  venue: String!
+}
+
+input CreateUserInput {
+  age: Float
+  avatar: String = ""
+  biography: String
+  category: String
+  company: String
+  dateOfBirth: String
+  description: String
+  email: String!
+  firstName: String!
+  gender: String
+  lastName: String!
+  nationality: String
+  occupation: String
+  passport: String
+  password: String
+  phoneNumber: String
+  qrcodeData: String
+  rating: [Float!]
+  residenceCountry: String
+  role: [EUserRole!]!
+  showNoc: Boolean
+  state: Boolean
+  status: Boolean
+  title: String
+}
+
+input CreateVenueInput {
+  description: String!
+  name: String!
+  shortDescription: String!
+  state: Boolean
+  thumbnail: String!
+  venueCategory: EVenueType!
+  venueInfo: VenueInfoInput!
+}
+
+type CreatedBy {
+  date: String!
+  user: User
+}
+
+input DateRangeInput {
+  endDate: DateTime!
+  startDate: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+enum ECMSTypes {
+  ABOUT_CONFERENCE
+  COMSEC
+  MEDIA
+  NEWS
+  PRIVACY_POLICY
+  QA
+  TOLL_NUMBER
+  TRANSIT_VISA
+  TRANSPORT_CAR_RENTALS
+  TRANSPORT_SHUTTLE_SERVICES
+  USEFUL_INFO
+  VISA_ON_ARRIVAL
+  VISITORS_VISA
+}
+
+enum EChatType {
+  NOC
+  PARTICIPANT
+}
+
+enum ENotificationType {
+  BOOKING_APPROVED
+  BOOKING_CANCELLED
+  BOOKING_REQUEST
+  BOOKING_ROOM_CHANGED
+  BROADCAST_MESSAGE
+  COVID_RESULT
+  NEW_CHAT_NOC
+  NEW_CHAT_PARTICIPANT
+}
+
+enum EQAtypes {
+  ACCOMODATION
+  ACCREDITATION
+  MEDIA
+  OPENING_CEREMONY
+  SECURITY
+  TELECOM
+  TRANSPORT
+  VENUES_HOTEL_ACCESS
+}
+
+enum EStatus {
+  APPROVED
+  APPROVED_REASSIGNED
+  CANCELLED
+  COMPLETED
+  PENDING
+}
+
+enum EUserRole {
+  ADMIN
+  ATTENDEE
+  COMMAND_POST
+  COMMUNICATION_MANAGER
+  COMS
+  CONTENT_MANAGER
+  FRONT_DESK
+  HOSPITALITY
+  MODERATOR
+  SPEAKER
+  TRANSPORT
+  TRANSPORT_MANAGER
+  VENUES_MANAGER
+}
+
+enum EVenueType {
+  ART_CRAFT
+  BAR_VENUE
+  COFFEE_SHOP_VENUE
+  EVENT_VENUE
+  HOTEL_APARTMENT_VENUE
+  MUSEUM_MEMORIAL_VENUE
+  NATIONAL_PARK
+  NIGHT_CLUB_VENUE
+  OTHERS
+  RESTAURANT_VENUE
+  SHOPPING_MALL
+}
+
+type Forum {
+  attendees: [String!]!
+  createdBy: CreatedBy!
+  description: String!
+  endDate: DateTime!
+  id: ID!
+  name: String!
+  rating: Rate!
+  startDate: DateTime!
+  state: Boolean!
+  status: Boolean!
+  thumbnail: String!
+  updatedBy: [CreatedBy!]!
+  venue: Venue!
+}
+
+type GenderType {
+  female: Float!
+  male: Float!
+  none: Float!
+  other: Float!
+  total: Float!
+}
+
+type Identity {
+  identityNumber: String!
+  identityType: String!
+}
+
+type Message {
+  createdDate: String!
+  message: String!
+  sender: String
+}
+
+type Mutation {
+  BroadcastMessage(message: String!, title: String!): Boolean!
+  UserLogin(UserLoginInput: UserLoginInput!): UserToken!
+
+  """Api for admin to approve booking"""
+  approveBooking(ApproveBookingInput: ApproveBookingInput!): Booking!
+  chogmLogin(ChogmLoginInput: ChogmLoginInput!): UserToken!
+  createBooking(CreateBookingInput: CreateBookingInput!): Booking!
+  createCms(CreateCmsInput: CreateCmsInput!): Cms!
+  createForum(createForumInput: CreateForumInput!): Forum!
+  createProgramme(createProgrammeInput: CreateProgrammeInput!): Programme!
+  createRoom(createRoomInput: CreateRoomInput!): Room!
+  createUser(createUserInput: CreateUserInput!): User!
+  createVenue(createVenueInput: CreateVenueInput!): Venue!
+  deviceRegistrationToken(registrationId: String!, userId: String!): User!
+  generateOtp(email: String!): Boolean!
+  otpLogin(email: String!, otp: String!): UserToken!
+  rateForum(RatingInput: RatingInput!, forumId: String!): Forum!
+  rateProgramme(RatingInput: RatingInput!, programmeId: String!): Programme!
+  rateUser(RatingInput: RatingInput!, userId: String!): User!
+  rateVenue(RatingInput: RatingInput!, venueId: String!): Venue!
+  registerToAttendForum(forumId: String!, userId: String!): Forum!
+  replyChat(ReplyChatInput: ReplyChatInput!): Chat!
+  resetPassword(newPassword: String!, verificationCode: Float!): Boolean!
+  sendNewChat(createChatInput: CreateChatInput!): Chat!
+  updateCms(UpdateCmsInput: UpdateCmsInput!): Cms!
+  updateForum(createForumInput: UpdateForumInput!): Forum!
+  updateNotification(UpdateSeenNotificationInput: UpdateSeenNotificationInput!): Boolean!
+  updateProgramme(UpdateProgrammeInput: UpdateProgrammeInput!): Programme!
+  updateRoom(UpdateRoomInput: UpdateRoomInput!): Room!
+  updateUser(UpdateUserInput: UpdateUserInput!): User!
+  updateVenue(UpdateVenueInput: UpdateVenueInput!): Venue!
+  uploadFile(file: Upload!): String!
+  uploadPDFFile(file: Upload!): String!
+  verifyEmail(email: String!): Boolean!
+}
+
+type Notification {
+  content: String!
+  createdDate: DateTime!
+  id: ID!
+  payload: NotificationPayload!
+  receiverId: String!
+  seen: Boolean!
+  type: ENotificationType!
+  userId: String!
+}
+
+type NotificationPayload {
+  createdBy: CreatedBy!
+  from: User
+  payloadId: String
+  title: String
+}
+
+type OtherInfo {
+  contactEmail: String
+  contactPhone: String
+  pdfFile: String!
+  website: String
+}
+
+input OtherInfoInput {
+  contactEmail: String
+  contactPhone: String
+  pdfFile: String
+  website: String
+}
+
+type Programme {
+  broadcastLink: String
+  createdBy: CreatedBy!
+  description: String!
+  endDate: DateTime!
+  forum: Forum!
+  id: ID!
+  moderator: [User!]!
+  rating: Rate!
+  room: Room
+  speakers: [User!]!
+  startDate: DateTime!
+  state: Boolean!
+  title: String!
+  updatedBy: [CreatedBy!]!
+}
+
+type Query {
+  aboutConference: Cms!
+  allCms: [Cms!]!
+  availableRooms: [Room!]!
+
+  """Query to fetch rooms by date range filter object"""
+  availableRoomsDateRange(dateRangeInput: DateRangeInput!): [Room!]!
+  booking(id: String!): Booking!
+  bookings: [Booking!]!
+  broadcastedMessages: [Notification!]!
+  categorizedChats(queryTypeInput: queryTypeInput!): [Chat!]!
+  chats(userId: String!): [Chat!]!
+  chatsById(chatId: String!): Chat!
+  chatsByNOC: [Chat!]!
+  cms(id: String!): Cms!
+  cmsByCategory(CmsCategoryInput: CmsCategoryInput!): [Cms!]!
+  cmsStats: AllStats!
+  covidResult: ConvidResult!
+  forum(id: String!): Forum!
+  forums: [Forum!]!
+  forumsByvenue(venueId: String!): [Forum!]!
+  news: [Cms!]!
+  notifications: [Notification!]!
+  notificationsByUser(userId: String!): [Notification!]!
+  privacyPolicy: Cms!
+  programme(id: String!): Programme!
+  programmes: [Programme!]
+
+  """Query to fetch programms/sessions by forum id"""
+  programmesByForum(forumId: String!): [Programme!]!
+
+  """Query to fetch programms/sessions by speaker/moderator id"""
+  programmesByUser(userId: String!): [Programme!]!
+  room(id: String!): Room!
+
+  """Query to fetch rooms by amenities filter object"""
+  roomByAmenities(AmenitiesInput: AmenitiesInput!): [Room!]!
+  rooms: [Room!]!
+
+  """Query to fetch rooms by venueId"""
+  roomsByAvenue(venueId: String!): [Room!]!
+
+  """Query to fetch speakers by forum"""
+  speakersByForum(forumId: String!): SpeakerSModerator!
+  takenRanks(VenueCategoryInput: VenueCategoryInput!): [Float!]!
+  tollNumber: Cms!
+  user(id: String!): User!
+  users(limit: Float!, skip: Float!): [User!]!
+
+  """query users by array of user ids"""
+  usersByIds(UserIdsInput: UserIdsInput!): [User!]!
+
+  """query users by user role"""
+  usersByRole(RoleInput: RolesInput!): [User!]!
+  usersCount: Float!
+  usersSearch(searchInput: String!): [User!]!
+  venue(id: String!): Venue!
+  venues: [Venue!]!
+  venuesByCategoy(VenueCategoryInput: VenueCategoryInput!): [Venue!]!
+}
+
+type Rate {
+  rate: Float!
+  rating: [Rating!]!
+}
+
+type Rating {
+  comment: String!
+  createdDate: String!
+  stars: Float!
+  user: User!
+}
+
+input RatingInput {
+  comment: String!
+  createdDate: String
+  rate: Float!
+  user: String!
+}
+
+input ReplyChatInput {
+  chatId: String!
+  message: String!
+  sender: String
+}
+
+input RolesInput {
+  roles: [EUserRole!]!
+}
+
+type Room {
+  amenities: RoomAmenities!
+  availability: Boolean!
+  bookable: Boolean!
+  capacity: Float!
+  createdBy: CreatedBy!
+  description: String!
+  id: ID!
+  isMediaRoom: Boolean!
+  name: String!
+  state: Boolean!
+  thumbnail: String!
+  updatedBy: [CreatedBy!]!
+  venue: Venue!
+}
+
+type RoomAmenities {
+  camera: Boolean!
+  conditioner: Boolean!
+  microphone: Boolean!
+  projector: Boolean!
+  wifi: Boolean!
+}
+
+type SpeakerSModerator {
+  moderators: [User!]!
+  speakers: [User!]!
+}
+
+type Subscription {
+  bookingRequestEvent: Booking!
+  chatEvent: Chat!
+  notificationEvent: Notification!
+  queryChatEvent(queryTypeInput: queryTypeInput!): Chat!
+  userChatEvent(userId: String!): Chat!
+  userNotificationEvent(userId: String!): Notification!
+}
+
+input UpdateCmsInput {
+  category: ECMSTypes
+  cmsId: String!
+  description: String
+  name: String
+  otherInfo: OtherInfoInput
+  qaType: EQAtypes
+  state: Boolean
+  thumbnail: String
+}
+
+input UpdateForumInput {
+  attendees: [String!]
+  description: String
+  endDate: DateTime
+  forumId: String!
+  name: String
+  startDate: DateTime
+  state: Boolean
+  status: Boolean = true
+  thumbnail: String
+  venue: String
+}
+
+input UpdateProgrammeInput {
+  broadcastLink: String
+  description: String
+  endDate: DateTime
+  forum: String
+  moderator: [String!]
+  programmeId: String!
+  room: String
+  speakers: [String!]
+  startDate: DateTime
+  state: Boolean
+  title: String
+}
+
+input UpdateRoomInput {
+  amenities: AmenitiesInput
+  bookable: Boolean
+  capacity: Float
+  description: String
+  isMediaRoom: Boolean
+  name: String
+  roomId: String!
+  state: Boolean
+  thumbnail: String
+  venue: String
+}
+
+input UpdateSeenNotificationInput {
+  notificationIds: [String!]!
+}
+
+input UpdateUserInput {
+  age: Float
+  avatar: String = ""
+  biography: String
+  category: String
+  company: String
+  dateOfBirth: String
+  description: String
+  email: String
+  firstName: String
+  gender: String
+  lastName: String
+  nationality: String
+  occupation: String
+  passport: String
+  password: String
+  phoneNumber: String
+  qrcodeData: String
+  rating: [Float!]
+  residenceCountry: String
+  role: [EUserRole!]
+  showNoc: Boolean
+  state: Boolean
+  status: Boolean
+  title: String
+  userId: String!
+}
+
+input UpdateVenueInput {
+  description: String
+  name: String
+  shortDescription: String
+  state: Boolean
+  thumbnail: String
+  venueCategory: EVenueType
+  venueId: String!
+  venueInfo: VenueInfoInput
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+type User {
+  accreditationId: String!
+  age: Float
+  avatar: String!
+  biography: String!
+  category: String
+  company: String
+  covidResult: ConvidResult!
+  createdBy: CreatedBy!
+  dateOfBirth: String
+  description: String!
+  deviceRegistrationId: String!
+  email: String!
+  events: [Float!]!
+  firstName: String!
+  gender: String
+  id: ID!
+  identity: Identity!
+  lastName: String!
+  nationality: String
+  occupation: String
+  passport: String
+  password: String!
+  phoneNumber: String
+  qrcodeData: String
+  rating: Rate!
+  residenceCountry: String
+  role: [EUserRole!]!
+  showNoc: Boolean!
+  state: Boolean!
+  status: Boolean!
+  title: String
+  updatedBy: [CreatedBy!]!
+  verificationCode: Verification!
+}
+
+input UserIdsInput {
+  userIds: [String!]!
+}
+
+input UserLoginInput {
+  email: String!
+  password: String!
+}
+
+type UserToken {
+  token: String!
+  user: User!
+}
+
+type Venue {
+  createdBy: CreatedBy!
+  description: String!
+  id: ID!
+  name: String!
+  rating: Rate!
+  shortDescription: String!
+  state: Boolean!
+  thumbnail: String!
+  updatedBy: [CreatedBy!]!
+  venueCategory: EVenueType!
+  venueInfo: VenueInfo!
+}
+
+input VenueCategoryInput {
+  category: EVenueType!
+}
+
+type VenueInfo {
+  contactEmail: String
+  contactPhone: String
+  hotelRanking: Float
+  locationLink: String!
+  venueLocationName: String
+  venueStreetAddress: String
+  venueWebsite: String
+}
+
+input VenueInfoInput {
+  contactEmail: String
+  contactPhone: String
+  hotelRanking: Float
+  locationLink: String!
+  venueLocationName: String
+  venueStreetAddress: String
+  venueWebsite: String
+}
+
+type Verification {
+  code: String!
+  expiryDate: String!
+}
+
+input queryTypeInput {
+  queryType: EQAtypes!
+}

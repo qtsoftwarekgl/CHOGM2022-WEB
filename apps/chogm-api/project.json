@@ -1,0 +1,69 @@
+{
+  "root": "apps/chogm-api",
+  "sourceRoot": "apps/chogm-api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/chogm-api",
+        "main": "apps/chogm-api/src/main.ts",
+        "tsConfig": "apps/chogm-api/tsconfig.app.json",
+        "assets": ["apps/chogm-api/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/chogm-api/src/environments/environment.ts",
+              "with": "apps/chogm-api/src/environments/environment.prod.ts"
+            }
+          ]
+        },
+        "uat": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/chogm-api/src/environments/environment.ts",
+              "with": "apps/chogm-api/src/environments/environment.uat.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "chogm-api:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/chogm-api/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/chogm-api"],
+      "options": {
+        "jestConfig": "apps/chogm-api/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "pm2": {
+      "executor": "@nrwl/workspace:run-script",
+      "options": {
+        "script": "pm2 start pm2.yaml"
+      }
+    }
+  },
+  "tags": []
+}

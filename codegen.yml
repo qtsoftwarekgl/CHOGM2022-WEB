@@ -1,0 +1,9 @@
+overwrite: true
+schema: 'http://localhost:3001/graphql'
+documents: './apps/chogm-ui/src/app/{components,pages}/**/*.ts'
+generates:
+  apps/chogm-ui/src/app/generated/graphql.tsx:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'

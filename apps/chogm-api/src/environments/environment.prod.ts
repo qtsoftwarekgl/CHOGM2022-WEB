@@ -1,0 +1,28 @@
+export const environment = {
+  production: true,
+  uat: false,
+  server_port: 3001,
+  host: 'https://chogmapi.qtsoftwareltd.com:3000/',
+  chogm_api_url: 'http://172.16.60.113/qt-chogm/api/web/index.php?r=v1/mobile',
+  chogm_cms_api_url: 'http://172.16.60.113/qt-chogm/api/web/?r=v1/cms',
+  chogm_cms_ui:
+    'https://chogmapp.qtsoftwareltd.com:3000/change-password?verification_code=',
+  mongo_uri: 'mongodb://localhost:27017/chogm22',
+  covid_test_url: 'https://his.hmis.moh.gov.rw/results/api/covid_results/',
+  redis_host: 'localhost',
+  redis_port: 6379,
+  redis_password: '',
+  jwt_secret: 'ajhbegvvlbg0987248oezqyaf28g64cxayuftzg',
+  jwt_expiresin: '14d',
+  chogm_api_version: 'v1',
+  chogm_api_x_auth: 'c8355970-8d63-4f70-b26f-878c27f12003',
+  chogm_api_cms_x_auth: 'b30e75d2-010c-4bd7-8408-3a97a9c77f64',
+  chogm_api_device: 'chogm cms api server',
+  apple_test_user: 'testuser@apple.com',
+  server_key:
+    'key=AAAAwjzG7MM:APA91bEHlrf8dUvRgBKm-L1sNSYQViOBlCttP7dvomwSawy3d-PI2l3jDTFIoqoXfL8NZZS7ugciEHxgXKaFO4ayAtJTk1SquVXOnUm83NktIVPPjmVw8cynF2hOeBwNaa5bIJIsvL_T',
+  mail_host: 'mail.chogm2022.rw',
+  mail_username: 'notifications@chogm2022.rw',
+  mail_password: '!nt@r3!@!@2010',
+  hmis_auth: 'Basic YXBpX3VzZXJfcXQ6RjlSQFpwMlRqR2NBQ3E2',
+};
